@@ -6,7 +6,14 @@ dotenv.config();
 import express from 'express';
 import db from './models/index.js';
 
+import cartRoute from "./routes/Cart.route.js";
+
 const app = express();
+
+
+app.use(express.json());
+
+app.use("cart", cartRoute);
 
 async function start(){
     try {

@@ -15,7 +15,12 @@ Order.init({
     },
     date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+    },
+    total: {
+        type: DataTypes.FLOAT,
+        allowNull: true
     }
 },{
     sequelize,
