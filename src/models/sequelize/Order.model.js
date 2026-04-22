@@ -14,7 +14,7 @@ Order.init({
         allowNull: false
     },
     date: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
     },

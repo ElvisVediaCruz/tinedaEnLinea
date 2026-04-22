@@ -2,7 +2,7 @@ import OrderService from "../services/Order.service.js";
 
 class OrderController{
     async createOrderFromCart(req, res){
-        const { id_user } = req.body;
+        const id_user = req.user.id_user;
         try {
             const result = await OrderService.createOrderFromCart(id_user);
             res.json(result);
@@ -20,7 +20,7 @@ class OrderController{
         }
     }
     async getOrdersByUser(req, res){
-        const { id_user } = req.params;
+        const id_user = req.user.id_user;
         try {
             const results = await OrderService.getOrdersByUser(id_user);
             res.json(results);

@@ -1,6 +1,6 @@
-import sequelize from "../config/conect";
-import Pay from "../models/sequelize/Pay.model";
-import Order from "../models/sequelize/Order.model";
+import sequelize from "../config/conect.js";
+import Pay from "../models/sequelize/Pay.model.js";
+import Order from "../models/sequelize/Order.model.js";
 
 class PayService{
     async payOrder(id_order, method_pos){

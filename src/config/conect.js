@@ -11,6 +11,5 @@ const sequelize = new Sequelize(
     logging: false
   }
 );
-console.log('password, antes', process.env.DB_PASSWORD)
 
 export default sequelize;

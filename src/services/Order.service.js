@@ -1,5 +1,5 @@
-import sequelize from "../config/conect";
-import Order from "../models/sequelize/Order.model";
+import sequelize from "../config/conect.js";
+import Order from "../models/sequelize/Order.model.js";
 import DetailOrder from '../models/sequelize/DetailOrder.model.js';
 import Cart from '../models/sequelize/Cart.model.js';
 import Product from '../models/sequelize/Product.model.js';
@@ -17,9 +17,9 @@ class OrderService {
                     model: Product,
                     attributes: ['id_product', 'name', 'price', 'stock']
                 },
-                transaction: t,
-                lock: true
+                transaction: t
             });
+            console.log(carts)
             if(carts.length === 0){
                 throw new Error("cart is empty")
             }

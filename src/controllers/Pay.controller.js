@@ -2,7 +2,7 @@ import PayService from "../services/Pay.service.js";
 
 class PayController {
     async payOrder(req, res){
-        const { id_order, method_pos} = req.body;
+        const { id_order, method_pos} = req.params;
         try {
             const payOrder = await PayService.payOrder(id_order, method_pos);
             res.json(payOrder)

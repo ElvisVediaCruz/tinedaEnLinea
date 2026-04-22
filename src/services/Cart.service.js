@@ -16,6 +16,7 @@ class CartService {
                 attributes: ['id_product', 'name', 'price']
             }
         });
+        
         const cartTotal = carts.reduce((total, cart) => {
             const price = cart.Product?.price || 0;
             return total + ( cart.amount * price);
@@ -25,13 +26,12 @@ class CartService {
     async addToCart(id_user, id_product, amount){
         const t = await sequelize.transaction();
         try {
+            if(amount <= 0) throw new Error("Amount not valid");
             const product = await Product.findByPk(id_product, { lock: t.LOCK.UPDATE, transaction: t });
             if(!product) {
-                await t.rollback();
                 throw new Error("Prodcut not found");
             }
             if(product.stock < amount){
-                await t.rollback();
                 throw new Error("insuffient stock");
             }
             const existingCart = await Cart.findOne({   
@@ -48,6 +48,7 @@ class CartService {
                 }
                 existingCart.amount = newAmount;
                 await existingCart.save({ transaction: t});
+                await t.commit();
                 return existingCart;
             }
             const cart = await Cart.create({
@@ -87,7 +88,6 @@ class CartService {
         
     }
 }
+ 
 
-const cartService = new CartService();
-
-export default cartService;
+export default new CartService();
